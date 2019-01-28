@@ -1,14 +1,14 @@
 export default class RPI {
 
-    private static getMax(): number {
-        return window.document.body.scrollHeight - window.innerHeight;
+    private static getMax(): string {
+        return (window.document.body.scrollHeight - window.innerHeight) + "";
     }
 
-    private static getValue(): number {
-        return window.scrollY;
+    private static getValue(): string {
+        return window.scrollY + "";
     }
 
-    private static getProgressBar(): HTMLElement {
+    private static getProgressBar(): any {
         return document.getElementsByTagName("progress")[0];
     }
 
@@ -16,14 +16,15 @@ export default class RPI {
         const progressBar: any = this.getProgressBar();
 
         // Set the Max attr for the first time
-        progressBar.attr({max: this.getMax()});
+        progressBar.setAttribute("max", this.getMax());
 
         window.onscroll = () => {
-            progressBar.attr({value: this.getValue()});
+            progressBar.setAttribute("value", this.getValue());
         };
 
         window.onresize = () => {
-            progressBar.attr({max: this.getMax(), value: this.getValue()});
+            progressBar.setAttribute("max", this.getMax());
+            progressBar.setAttribute("value", this.getValue());
         };
     }
 }

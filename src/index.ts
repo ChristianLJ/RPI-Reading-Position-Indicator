@@ -14,17 +14,21 @@ export default class RPI {
 
     public static init(): void {
         const progressBar: any = this.getProgressBar();
-
-        // Set the Max attr for the first time
-        progressBar.setAttribute("max", this.getMax());
+        if (progressBar != null) {
+            progressBar.setAttribute("max", this.getMax());
+        }
 
         window.onscroll = () => {
-            progressBar.setAttribute("value", this.getValue());
+            if (progressBar != null) {
+                progressBar.setAttribute("value", this.getValue());
+            }
         };
 
         window.onresize = () => {
-            progressBar.setAttribute("max", this.getMax());
-            progressBar.setAttribute("value", this.getValue());
+            if (progressBar != null) {
+                progressBar.setAttribute("max", this.getMax());
+                progressBar.setAttribute("value", this.getValue());
+            }
         };
     }
 }

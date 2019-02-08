@@ -1,4 +1,6 @@
 export default class RPI {
+    private static scrolling: boolean = false;
+    private static scrollingDelay: number = 250;
 
     private static getMax(): string {
         return (window.document.body.scrollHeight - window.innerHeight) + "";
@@ -17,18 +19,27 @@ export default class RPI {
         if (progressBar != null) {
             progressBar.setAttribute("max", this.getMax());
         }
-
-        window.onscroll = () => {
-            if (progressBar != null) {
-                progressBar.setAttribute("value", this.getValue());
-            }
-        };
-
-        window.onresize = () => {
+        document.addEventListener('resize', () => {
             if (progressBar != null) {
                 progressBar.setAttribute("max", this.getMax());
                 progressBar.setAttribute("value", this.getValue());
             }
-        };
+        });
+
+        document.addEventListener('scroll', () => {
+            this.scrolling = true;
+        }, {
+            capture: true,
+            passive: true
+        });
+
+        setInterval(() => {
+            if (this.scrolling && progressBar != null) {
+                this.scrolling = false;
+                progressBar.setAttribute("value", this.getValue());
+            }
+        }, this.scrollingDelay);
+
+
     }
 }

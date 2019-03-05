@@ -28,9 +28,6 @@ export default class RPI {
 
         document.addEventListener('scroll', () => {
             this.scrolling = true;
-        }, {
-            capture: true,
-            passive: true
         });
 
         setInterval(() => {

@@ -1,6 +1,6 @@
 {
   "name": "indicatus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Christian Leicht",
   "license": "ISC",
   "scripts": {
@@ -16,8 +16,6 @@
   },
   "homepage": "https://github.com/ChristianLJ/indicatus#readme",
   "devDependencies": {
-    "@types/node": "^12.0.2",
-    "ts-loader": "^6.0.1",
     "typescript": "^3.4.5"
   },
   "description": ""
